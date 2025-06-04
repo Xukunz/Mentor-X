@@ -36,9 +36,11 @@
 
     <!-- 右侧导航链接 -->
     <nav class="space-x-6 text-gray-700 text-base font-medium">
-      <a href="#programs" class="hover:text-blue-600 transition">Programs</a>
-      <a href="#donate" class="hover:text-blue-600 transition">Donate</a>
-      <a href="#contact" class="hover:text-blue-600 transition">Contact Us</a>
+      <a href="https://1813225690-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_CN.HuPD6Jx6JqA.O%2Fd%3D1%2Frs%3DAHpOoo8tY6ZLxl7r5Hb--ojT06NoARUkqg%2Fm%3D__features__#programs"
+         target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition">Programs</a>
+      <a href="https://pledge.mentor-x.org/"
+         target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition">Donate</a>
+      <a href="mailto:admin@mentor-x.org" class="hover:text-blue-600 transition">Contact Us</a>
     </nav>
   </div>
 </header>
@@ -68,9 +70,16 @@
 
   <!-- 按钮区 -->
   <div class="flex flex-col md:flex-row gap-6">
-    <a href="#join" class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition">Join Our Community</a>
-    <a href="#donate" class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition">Donate Now</a>
+    <a href="https://discord.com/invite/xYwggpJxPj" target="_blank" rel="noopener noreferrer"
+       class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition">
+      Join Our Community
+    </a>
+    <a href="https://pledge.mentor-x.org/" target="_blank" rel="noopener noreferrer"
+       class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition">
+      Donate Now
+    </a>
   </div>
+
 </section>
 
 
@@ -79,10 +88,10 @@
 
 <!-- Our Mission -->
 <section id="mission" class="mission-bg py-20">
-  <div class="container mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-center gap-12">
+  <div class="container mx-auto px-6 md:px-12 flex flex-col items-center gap-12">
 
-    <!-- 左侧文字介绍 -->
-    <div class="md:w-1/2">
+    <!-- 左侧文字介绍（现在占据整行） -->
+    <div class="w-full max-w-3xl">
       <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-4">Our Mission</h2>
       <p class="text-gray-700 mb-4">
         MentorX is a non-profit organization dedicated to <strong>uplifting Asian startup founders and other underrepresented groups within the startup ecosystem.</strong>
@@ -95,25 +104,47 @@
       </p>
     </div>
 
-    <!-- 右侧图标内容（三个图标横向排布，使用纯白底图） -->
-    <div class="md:w-1/2 grid grid-cols-1 md:grid-cols-3 gap-8">
-
-      <div class="flex flex-col items-center bg-white rounded-lg shadow-md p-4">
-        <img src="images/mentorship-icon-512.png" alt="Mentorship" class="w-32 md:w-40 h-auto object-contain" />
+    <!-- 下面放置图标区域 -->
+    <div class="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="flex flex-col items-center text-center bg-white rounded-lg shadow-md p-6">
+        <div class="h-28 flex items-center justify-center mb-3">
+          <img src="images/mentorship-icon-resized.png" alt="Mentorship" class="h-full object-contain" />
+        </div>
+        <h3 class="text-2xl font-semibold mb-2">Mentorship</h3>
+        <p class="text-gray-700 text-base leading-relaxed">
+          We provide guidance and support to help startups thrive.
+        </p>
       </div>
 
-      <div class="flex flex-col items-center bg-white rounded-lg shadow-md p-4">
-        <img src="images/network-icon-512.png" alt="Network" class="w-32 md:w-40 h-auto object-contain" />
+      <!-- Card 2 -->
+      <div class="flex flex-col items-center text-center bg-white rounded-lg shadow-md p-6">
+        <div class="h-28 flex items-center justify-center mb-3">
+          <img src="images/network-icon-resized.png" alt="Network" class="h-full object-contain" />
+        </div>
+        <h3 class="text-2xl font-semibold mb-2">Network</h3>
+        <p class="text-gray-700 text-base leading-relaxed">
+          We create connections to cultivate an inclusive landscape.
+        </p>
       </div>
 
-      <div class="flex flex-col items-center bg-white rounded-lg shadow-md p-4">
-        <img src="images/ecosystem-icon-512.png" alt="Ecosystem" class="w-32 md:w-40 h-auto object-contain" />
+      <!-- Card 3 -->
+      <div class="flex flex-col items-center text-center bg-white rounded-lg shadow-md p-6">
+        <div class="h-28 flex items-center justify-center mb-3">
+          <img src="images/ecosystem-icon-resized.png" alt="Ecosystem" class="h-full object-contain" />
+        </div>
+        <h3 class="text-2xl font-semibold mb-2">Ecosystem</h3>
+        <p class="text-gray-700 text-base leading-relaxed">
+          We foster an entrepreneurial community that values diversity.
+        </p>
       </div>
-
     </div>
+
+
 
   </div>
 </section>
+
 
 <!-- Spacer Section -->
 <section class="h-24 md:h-32 bg-gradient-to-b from-white to-gray-50"></section>
@@ -123,20 +154,28 @@
   <div class="container mx-auto max-w-3xl text-center bg-white bg-opacity-80 p-8 rounded-lg">
     <h2 class="text-3xl font-bold text-blue-800 mb-6">Our Programs</h2>
     <p class="mb-6">Our dedicated mentorship program connects founders with experienced mentors who provide guidance and support tailored to the unique challenges faced by underrepresented groups.</p>
-    <p class="mb-6">Join us bi-monthly for the Seattle Startup Showcase, where founders can pitch their startups, receive coaching from mentors, and connect with fellow founders. <a href="#" class="text-blue-600 hover:underline">Learn more.</a></p>
-    <p>Founders can request office hours to have one-on-one sessions with our mentors, gaining personalized insights and advice. <a href="#" class="text-blue-600 hover:underline">Join our Discord</a> to schedule a session.</p>
-  </div>
+    <p class="mb-6">
+      Join us bi-monthly for the Seattle Startup Showcase, where founders can pitch their startups, receive coaching from mentors, and connect with fellow founders.
+      <a href="https://lu.ma/SeattleStartUpShowcase" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Learn more.</a>
+    <p>
+      Founders can request office hours to have one-on-one sessions with our mentors, gaining personalized insights and advice.
+      <a href="https://discord.com/invite/xYwggpJxPj" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">
+        Join our Discord
+      </a>
+      to schedule a session.
+    </p>
 </section>
 
 <!-- Footer -->
 <footer class="footer-bg text-white py-8">
   <div class="container mx-auto flex flex-col items-center text-center space-y-4">
     <div class="space-x-4 text-orange-400 text-lg">
-      <a href="#programs" class="hover:underline">Programs</a>
+      <a href="https://1813225690-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_CN.HuPD6Jx6JqA.O%2Fd%3D1%2Frs%3DAHpOoo8tY6ZLxl7r5Hb--ojT06NoARUkqg%2Fm%3D__features__#programs"
+         target="_blank" rel="noopener noreferrer" class="hover:underline">Programs</a>
       <span>|</span>
-      <a href="#donate" class="hover:underline">Donate</a>
+      <a href="https://pledge.mentor-x.org/" target="_blank" rel="noopener noreferrer" class="hover:underline">Donate</a>
       <span>|</span>
-      <a href="#contact" class="hover:underline">Contact Us</a>
+      <a href="mailto:admin@mentor-x.org" class="hover:underline">Contact Us</a>
     </div>
     <p class="text-gray-300 text-sm">© 2025 MentorX. All rights reserved.</p>
   </div>
