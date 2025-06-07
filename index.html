@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>MentorX | Championing Diversity in the Startup Ecosystem</title>
+  <meta name="description" content="MentorX empowers Asian and underrepresented startup founders through mentorship, community, and support." />
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -23,53 +24,24 @@
 <body class="text-gray-800">
 
 <!-- Navbar -->
-<header class="bg-white shadow">
+<header class="bg-white shadow sticky top-0 z-50">
   <div class="container mx-auto flex items-center justify-between p-6">
-    <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition">
+    <a href="#hero" class="flex items-center space-x-3 hover:opacity-80 transition">
       <img src="images/MentorX_White_Transparent.png" alt="MentorX Logo" class="h-10 w-auto" />
       <span class="text-xl font-medium text-gray-800">MentorX Home</span>
     </a>
     <nav class="space-x-6 text-gray-700 text-base font-medium">
-      <a href="https://2091401895-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_CN.HuPD6Jx6JqA.O%2Fd%3D1%2Frs%3DAHpOoo8tY6ZLxl7r5Hb--ojT06NoARUkqg%2Fm%3D__features__#programs"
-         target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition">Programs</a>
-      <a href="https://pledge.mentor-x.org/"
-         target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition">Donate</a>
-      <a href="mailto:admin@mentor-x.org" class="hover:text-blue-600 transition">Contact Us</a>
+      <a href="#programs" class="hover:text-blue-600 transition-colors duration-300">Programs</a>
+      <a href="https://pledge.mentor-x.org/" target="_blank" rel="noopener noreferrer" class="hover:text-blue-600 transition-colors duration-300">Donate</a>
+      <a href="mailto:admin@mentor-x.org" class="hover:text-blue-600 transition-colors duration-300">Contact Us</a>
     </nav>
   </div>
 </header>
 
-<!-- 修改后的 Hero Section -->
+<!-- Hero Section -->
 <section id="hero" class="flex flex-col items-center justify-center text-center py-24 bg-white text-gray-900">
-  <!-- “Home” 标题 -->
-  <h2
-          class="reveal-on-load opacity-0 translate-y-8 text-4xl font-semibold mb-2">
-    Home
-  </h2>
-
-  <!-- 用 Heroicons 的 chevron-down SVG 替换原来的 ↓ -->
-  <div class="h-6"></div>
-  <div class="reveal-on-load opacity-0 translate-y-8 mb-6">
-    <!-- Heroicons chevron-down（向下箭头） -->
-    <svg xmlns="http://www.w3.org/2000/svg"
-         class="w-8 h-8 text-gray-400 mx-auto"
-         fill="none"
-         viewBox="0 0 24 24"
-         stroke="currentColor"
-    >
-      <path stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M19 9l-7 7-7-7" />
-    </svg>
-  </div>
-
-  <div class="h-6"></div>
-  <div class="h-6"></div>
-
   <!-- 主标题 -->
-  <h1
-          class="reveal-on-load opacity-0 translate-y-8 text-4xl md:text-8xl font-extrabold leading-relaxed max-w-9xl mb-6">
+  <h1 class="reveal-on-load opacity-0 translate-y-8 text-4xl md:text-8xl font-extrabold leading-relaxed max-w-9xl mb-6">
     Championing Diversity in the
     <div class="h-6"></div>
     <span class="text-blue-500">Startup</span>
@@ -77,22 +49,28 @@
   </h1>
 
   <!-- 副标题 -->
-  <p
-          class="reveal-on-load opacity-0 translate-y-8 text-lg md:text-xl text-gray-600 max-w-2xl mb-10">
+  <p class="reveal-on-load opacity-0 translate-y-8 text-lg md:text-xl text-gray-600 max-w-2xl mb-10">
     Empowering Asian startup founders and underrepresented groups to thrive and innovate.
   </p>
 
   <!-- 按钮区 -->
   <div class="flex flex-col md:flex-row gap-6">
     <a href="https://discord.com/invite/xYwggpJxPj" target="_blank" rel="noopener noreferrer"
-       class="reveal-on-load opacity-0 translate-y-8 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition">
+       class="reveal-on-load opacity-0 translate-y-8 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">
       Join Our Community
     </a>
     <a href="https://pledge.mentor-x.org/" target="_blank" rel="noopener noreferrer"
-       class="reveal-on-load opacity-0 translate-y-8 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition">
+       class="reveal-on-load opacity-0 translate-y-8 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">
       Donate Now
     </a>
   </div>
+
+  <!-- 向下箭头滚动到 Our Mission -->
+  <a href="#mission" class="block mx-auto mt-16 animate-bounce">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </a>
 </section>
 
 <!-- Spacer -->
@@ -166,9 +144,7 @@
       Our dedicated mentorship program connects founders with experienced mentors who provide guidance and support tailored to the unique challenges faced by underrepresented groups.
     </p>
     <p class="reveal-on-scroll opacity-0 translate-y-8 mb-6">
-      Join us bi-monthly for the Seattle Startup Showcase, where founders可以pitch their startups, receive coaching from mentors, and connect with fellow founders.
-      <a href="https://2091401895-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_CN.HuPD6Jx6JqA.O%2Fd%3D1%2Frs%3DAHpOoo8tY6ZLxl7r5Hb--ojT06NoARUkqg%2Fm%3D__features__#programs"
-         target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline">Learn more.</a>
+      Join us bi-monthly for the Seattle Startup Showcase, where founders can pitch their startups, receive coaching from mentors, and connect with fellow founders.
     </p>
     <p class="reveal-on-scroll opacity-0 translate-y-8">
       Founders can request office hours to have one-on-one sessions with our mentors, gaining personalized insights and advice.
@@ -179,11 +155,10 @@
 </section>
 
 <!-- Footer -->
-<footer class="footer-bg text-white py-8">
+<footer class="bg-gray-900 text-white py-8">
   <div class="container mx-auto flex flex-col items-center text-center space-y-4">
     <div class="space-x-4 text-orange-400 text-lg">
-      <a href="https://2091401895-atari-embeds.googleusercontent.com/embeds/16cb204cf3a9d4d223a0a3fd8b0eec5d/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.zh_CN.HuPD6Jx6JqA.O%2Fd%3D1%2Frs%3DAHpOoo8tY6ZLxl7r5Hb--ojT06NoARUkqg%2Fm%3D__features__#programs"
-         target="_blank" rel="noopener noreferrer" class="hover:underline">Programs</a>
+      <a href="#programs" class="hover:underline">Programs</a>
       <span>|</span>
       <a href="https://pledge.mentor-x.org/" target="_blank" rel="noopener noreferrer" class="hover:underline">Donate</a>
       <span>|</span>
@@ -193,19 +168,16 @@
   </div>
 </footer>
 
-<!-- 「返回顶部」浮动按钮 -->
-<button
-        onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
-        class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition"
-        aria-label="返回顶部"
->
-  <!-- 向上的箭头 Icon（SVG）-->
+<!-- 返回顶部浮动按钮 -->
+<button onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+        class="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-colors duration-300"
+        aria-label="Back to top">
   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
   </svg>
 </button>
 
-<!-- JavaScript 加载时与滚动时触发上浮动画 -->
+<!-- Animation Script -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const loadEls = document.querySelectorAll('.reveal-on-load');
@@ -234,5 +206,6 @@
     });
   });
 </script>
+
 </body>
 </html>
