@@ -18,6 +18,33 @@
       background-color: rgba(250, 250, 250, 0.85);
       background-blend-mode: lighten;
     }
+    /* 横排容器：桌面端三列，小屏自动换行/可滚动 */
+    .tweets-grid {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 8px;
+    }
+    /* 每条推文缩放（可按需调 0.75~0.95） */
+    .tweet-embed {
+      transform: scale(0.85);
+      transform-origin: top left;
+      width: 340px;     /* 官方卡片原宽度基准，缩放后实际更小 */
+      overflow: hidden; /* 避免缩放带来的滚动条 */
+    }
+    /* 1024 以下稍微放大，便于阅读 */
+    @media (max-width: 1024px) {
+      .tweets-grid { flex-wrap: wrap; }
+      .tweet-embed { transform: scale(0.9); }
+    }
+    /* 640 以下单列展示，原始比例 */
+    @media (max-width: 640px) {
+      .tweets-grid { flex-wrap: wrap; }
+      .tweet-embed { transform: scale(1); width: 100%; }
+    }
   </style>
 </head>
 
@@ -74,36 +101,54 @@
 
 <!-- Posts -->
 <section id="posts" class="relative">
+  <!-- 背景图 + 暗色遮罩 -->
   <div class="absolute inset-0 bg-[url('images/your-bg.jpg')] bg-cover bg-center"></div>
   <div class="absolute inset-0 bg-black/60"></div>
 
   <div class="relative container mx-auto px-6 md:px-12 py-20">
+    <!-- 标题 -->
     <h2 class="text-center text-white text-3xl md:text-4xl font-extrabold mb-8 drop-shadow">
       Recent Highlights
     </h2>
 
-    <div class="mx-auto max-w-3xl bg-white rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
+    <!-- 白色卡片容器 -->
+    <div class="mx-auto max-w-5xl bg-white rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
+      <!-- 卡片头 -->
       <div class="flex items-center gap-3 px-5 py-4 border-b">
         <span class="inline-flex h-2.5 w-2.5 rounded-full bg-pink-500"></span>
         <h3 class="text-lg font-semibold text-gray-900">Our Latest on X</h3>
         <span class="ml-auto text-sm text-gray-500">@XMentor18812</span>
       </div>
 
-      <!-- 官方嵌入单条推文 -->
-      <blockquote class="twitter-tweet">
-        <p lang="en" dir="ltr">
-          The startup world is buzzing! From climate tech in Limburg to health innovations in the Czech Republic,
-          there&#39;s a wealth of opportunities. Learn how various regions are transforming industries and explore insights
-          to fuel your entrepreneurial journey.
-          <a href="https://twitter.com/hashtag/Startups?src=hash&amp;ref_src=twsrc%5Etfw">#Startups</a>
-          <a href="https://twitter.com/hashtag/Innovation?src=hash&amp;ref_src=twsrc%5Etfw">#Innovation</a>
-        </p>
-        &mdash; MentorX (@XMentor18812)
-        <a href="https://twitter.com/XMentor18812/status/1955660880009736587?ref_src=twsrc%5Etfw">August 13, 2025</a>
-      </blockquote>
+      <!-- 自动加载：最近三条推文（横向 + 缩小） -->
+      <div class="p-4">
+        <div id="tweets-grid" class="tweets-grid">
+          <!-- JS 会把 3 个 blockquote 塞到这里并调用 widgets.js 渲染 -->
+        </div>
+      </div>
     </div>
+
+    <!-- 下面是按钮/博客 -->
+    <div class="mt-8 flex flex-col md:flex-row justify-center gap-4">
+      <a href="https://mentor-x.blogspot.com/" target="_blank" rel="noopener noreferrer"
+         class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors">
+        MentorX Blog
+      </a>
+      <a href="https://x.com/XMentor18812" target="_blank" rel="noopener noreferrer"
+         class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors">
+        Follow Us on X
+      </a>
+    </div>
+
+    <!-- Blogger 列表（如需保留） -->
+    <div id="blogger-posts" class="w-full max-w-2xl mx-auto flex flex-col gap-4 mt-6"></div>
+    <button id="load-more"
+            class="mx-auto mt-4 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors">
+      Load More
+    </button>
   </div>
 </section>
+
 
 <!-- 只保留一次 -->
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
@@ -254,6 +299,52 @@
     document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
   });
 </script>
+
+<script>
+  // 自动抓取最近 3 条并渲染
+  const WORKER_URL = 'https://mentor-x.xksx688.workers.dev/'; // ← 你的 Worker
+
+  async function loadLatestTweets() {
+    const host = document.getElementById('tweets-grid');
+    if (!host) return;
+
+    try {
+      const res = await fetch(WORKER_URL, { cache: 'no-store' });
+      if (!res.ok) throw new Error('RSS fetch failed');
+      const xml = new DOMParser().parseFromString(await res.text(), 'application/xml');
+
+      // 取最近 3 条推文链接
+      const links = [...xml.querySelectorAll('item > link')].slice(0, 3).map(n => n.textContent.trim());
+      if (!links.length) {
+        host.innerHTML = '<div class="text-gray-500 p-4">No recent posts.</div>';
+        return;
+      }
+
+      // 生成 3 个官方 blockquote（随后由 widgets.js 渲染）
+      host.innerHTML = '';
+      links.forEach(href => {
+        const bq = document.createElement('blockquote');
+        bq.className = 'twitter-tweet tweet-embed';
+        const a = document.createElement('a');
+        a.href = href;
+        bq.appendChild(a);
+        host.appendChild(bq);
+      });
+
+      // 尝试渲染（widgets.js 加载是异步的，这里轮询直到可用）
+      const ensure = () => (window.twttr && twttr.widgets)
+        ? twttr.widgets.load(host)
+        : setTimeout(ensure, 200);
+      ensure();
+    } catch (e) {
+      console.error(e);
+      host.innerHTML = '<div class="text-red-500 p-4">Unable to load posts.</div>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadLatestTweets);
+</script>
+
 
 </body>
 </html>
