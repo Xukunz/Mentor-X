@@ -149,11 +149,6 @@
   </div>
 </section>
 
-
-<!-- 只保留一次 -->
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
 <!-- Our Mission -->
 <section id="mission" class="mission-bg py-20 scroll-mt-24">
   <div class="container mx-auto px-6 md:px-12 flex flex-col items-center gap-12">
@@ -270,11 +265,10 @@
   </svg>
 </button>
 
-<!-- Twitter Embed Script -->
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- 你的 Blogger 脚本 -->
 <script src="js/bloggerPosts.js"></script>
 
-<!-- Animation Script -->
+<!-- 动画 -->
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     const loadEls = document.querySelectorAll('.reveal-on-load');
@@ -300,9 +294,21 @@
   });
 </script>
 
+<!-- Twitter widgets 自注入（避免重复加载） -->
 <script>
-  // 自动抓取最近 3 条并渲染
-  const WORKER_URL = 'https://mentor-x.xksx688.workers.dev/'; // ← 你的 Worker
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {};
+    if (d.getElementById(id)) { window.twttr?.widgets?.load(); return; }
+    js = d.createElement(s); js.id = id; js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+    t._e = []; t.ready = f => t._e.push(f);
+    window.twttr = t;
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<!-- 用返回 JSON 的 Worker（会自动换镜像） -->
+<script>
+  const WORKER_URL = 'https://mentor-x.xksx688.workers.dev/?user=XMentor18812&n=3';
 
   async function loadLatestTweets() {
     const host = document.getElementById('tweets-grid');
@@ -310,17 +316,14 @@
 
     try {
       const res = await fetch(WORKER_URL, { cache: 'no-store' });
-      if (!res.ok) throw new Error('RSS fetch failed');
-      const xml = new DOMParser().parseFromString(await res.text(), 'application/xml');
+      if (!res.ok) throw new Error('fetch failed');
+      const { links } = await res.json();
 
-      // 取最近 3 条推文链接
-      const links = [...xml.querySelectorAll('item > link')].slice(0, 3).map(n => n.textContent.trim());
-      if (!links.length) {
+      if (!links || !links.length) {
         host.innerHTML = '<div class="text-gray-500 p-4">No recent posts.</div>';
         return;
       }
 
-      // 生成 3 个官方 blockquote（随后由 widgets.js 渲染）
       host.innerHTML = '';
       links.forEach(href => {
         const bq = document.createElement('blockquote');
@@ -331,10 +334,8 @@
         host.appendChild(bq);
       });
 
-      // 尝试渲染（widgets.js 加载是异步的，这里轮询直到可用）
-      const ensure = () => (window.twttr && twttr.widgets)
-        ? twttr.widgets.load(host)
-        : setTimeout(ensure, 200);
+      const ensure = () =>
+        (window.twttr && twttr.widgets) ? twttr.widgets.load(host) : setTimeout(ensure, 200);
       ensure();
     } catch (e) {
       console.error(e);
@@ -344,7 +345,6 @@
 
   document.addEventListener('DOMContentLoaded', loadLatestTweets);
 </script>
-
 
 </body>
 </html>
