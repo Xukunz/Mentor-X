@@ -73,38 +73,58 @@
 <section class="h-24 md:h-32 bg-gradient-to-b from-white to-gray-50"></section>
 
 <!-- Posts -->
-<section id="posts" class="py-20 bg-gray-100">
-  <div class="container mx-auto px-6 md:px-12 flex flex-col items-center gap-8">
-    <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-6">Posts</h2>
+<<section id="posts" class="relative">
+  <!-- 背景图 + 暗色遮罩，营造焦点区域 -->
+  <div class="absolute inset-0 bg-[url('images/your-bg.jpg')] bg-cover bg-center"></div>
+  <div class="absolute inset-0 bg-black/60"></div>
 
-    <!-- 最新 3 条推文（免 Token，自动更新） -->
-    <div id="twitter-posts" class="w-full max-w-2xl overflow-hidden rounded-lg mb-6">
-      <a class="twitter-timeline"
-         data-theme="light"
-         data-tweet-limit="3"
-         data-chrome="noheader nofooter"
-         href="https://twitter.com/XMentor18812">
-         Tweets by XMentor18812
-      </a>
+  <div class="relative container mx-auto px-6 md:px-12 py-20">
+    <!-- 标题 -->
+    <h2 class="text-center text-white text-3xl md:text-4xl font-extrabold mb-8 drop-shadow">
+      Recent Highlights
+    </h2>
+
+    <!-- 白色卡片容器 -->
+    <div class="mx-auto max-w-3xl bg-white rounded-2xl shadow-2xl ring-1 ring-black/5 overflow-hidden">
+      <!-- 卡片头 -->
+      <div class="flex items-center gap-3 px-5 py-4 border-b">
+        <span class="inline-flex h-2.5 w-2.5 rounded-full bg-pink-500"></span>
+        <h3 class="text-lg font-semibold text-gray-900">Our Latest on X</h3>
+        <span class="ml-auto text-sm text-gray-500">@XMentor18812</span>
+      </div>
+
+      <!-- 时间线嵌入：免 Token，自动更新最近 3 条 -->
+      <div class="p-0 overflow-hidden">
+        <a class="twitter-timeline"
+           data-tweet-limit="3"
+           data-height="620"
+           data-chrome="noheader nofooter noborders transparent"
+           href="https://twitter.com/XMentor18812">
+           Tweets by XMentor18812
+        </a>
+      </div>
     </div>
 
-    <div class="flex flex-col md:flex-row gap-4">
+    <!-- 下面是你的按钮/博客等，可保留 -->
+    <div class="mt-8 flex flex-col md:flex-row justify-center gap-4">
       <a href="https://mentor-x.blogspot.com/" target="_blank" rel="noopener noreferrer"
-         class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">
+         class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors">
         MentorX Blog
       </a>
       <a href="https://x.com/XMentor18812" target="_blank" rel="noopener noreferrer"
-         class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">
+         class="px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors">
         Follow Us on X
       </a>
     </div>
 
-    <div id="blogger-posts" class="w-full max-w-2xl flex flex-col gap-4 mt-6"></div>
-    <button id="load-more" class="mt-4 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">Load More</button>
+    <!-- 如果还要显示 Blogger 列表，就在这里继续 -->
+    <div id="blogger-posts" class="w-full max-w-2xl mx-auto flex flex-col gap-4 mt-6"></div>
+    <button id="load-more"
+            class="mx-auto mt-4 px-6 py-3 bg-blue-500 text-white text-lg font-medium rounded-full shadow-md hover:bg-blue-600 transition-colors">
+      Load More
+    </button>
   </div>
 </section>
-
-<section class="h-24 md:h-32 bg-gradient-to-b from-gray-100 to-white"></section>
 
 <!-- Our Mission -->
 <section id="mission" class="mission-bg py-20 scroll-mt-24">
@@ -224,7 +244,6 @@
 
 <!-- Twitter Embed Script -->
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<!-- 已移除 js/twitterCarousel.js -->
 <script src="js/bloggerPosts.js"></script>
 
 <!-- Animation Script -->
